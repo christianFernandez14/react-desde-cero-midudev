@@ -11,8 +11,18 @@
         flex-direction: column;
         text-align: center;
       }
+
+      picture.is-small{
+        width: 50px;
+      }
+   
+      picture.is-large{
+        width: 200px;
+      }
+   
+      
       img {
-        width: 100px;
+        width: 100%;
         box-shadow: 0 0 15px #999;
         border-radius: 50%;
       }
@@ -35,31 +45,39 @@
       const $app = document.getElementById("app");
       const useState = React.useState
 
-      const Avatar = params => {
+      const Avatar = props => {
         const [enable, setEnable] = useState(true)
 
-        const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`
+        const src = `https://randomuser.me/api/portraits/women/${props.id}.jpg`
 
-        // return h('img', {src})
+        let pictureClassName =''
+        if(props.size === 'small'){
+          pictureClassName = 'is-small'
+        }else if (props.size === 'large'){
+          pictureClassName= 'is-large'
+        }
+
+        const imgClassName = enable ? '' : 'disabled'
 
         return (
-          <picture>
+          <picture className={pictureClassName}>
             <img 
               onClick = {()=> {
                 setEnable(!enable)
               }}
-              className={enable ? '' : 'disabled'} 
+              className={imgClassName} 
               src={src} 
             />
-            <h3>{params.name}</h3>
+            <h3>{props.name}</h3>
           </picture>
           )
       }
 
       ReactDOM.render(
         <div>
-            <Avatar id={1} name={"Alejandra"}/>
+            <Avatar id={1} name={"Alejandra"} size='small'/>
             <Avatar id={2} name={"Carmen"}/>
+            <Avatar id={3} name={"Paola"} size='large'/>
         </div>, $app
       )
           
