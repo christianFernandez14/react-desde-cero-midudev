@@ -60,12 +60,15 @@
       const Contador = () => {
 
         const [contador, setContador] = useState(0)
+        const [veces, setVeces] = useState(0)
 
         const incrementar = ()=>{
           setContador(contador + 1)
+          setVeces(veces + 1)
         }
         const decrementar = ()=>{
           setContador(contador - 1)
+          setVeces(veces + 1)
         }
 
           return (
@@ -73,6 +76,7 @@
               <h2>{contador}</h2>
               <button onClick={()=> incrementar()}>Incrementar +</button>
               <button onClick={()=> decrementar()}>Decrementar -</button>
+              <p>Veces {veces}</p>
             </div>
             )
         }
