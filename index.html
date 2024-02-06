@@ -30,6 +30,18 @@
       img.disabled{
         opacity: .3;
       }
+
+      .contenedorBoton{
+        width: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contenedorBoton button{
+        width: 120px;
+        margin: 5px 5px;
+      }
     </style>
 
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -45,6 +57,26 @@
       const $app = document.getElementById("app");
       const useState = React.useState
 
+      const Contador = () => {
+
+        const [contador, setContador] = useState(0)
+
+        const incrementar = ()=>{
+          setContador(contador + 1)
+        }
+        const decrementar = ()=>{
+          setContador(contador - 1)
+        }
+
+          return (
+            <div className='contenedorBoton'>
+              <h2>{contador}</h2>
+              <button onClick={()=> incrementar()}>Incrementar +</button>
+              <button onClick={()=> decrementar()}>Decrementar -</button>
+            </div>
+            )
+        }
+
       const Avatar = ({id, name='😁', size}) => {
         const [enable, setEnable] = useState(true)
 
@@ -59,6 +91,11 @@
 
         const imgClassName = enable ? '' : 'disabled'
 
+        // Otra manera hacerlo
+        const render = enable ? name : 'Desactavida'
+
+    
+  
         return (
           <picture className={pictureClassName}>
             <img 
@@ -68,16 +105,18 @@
               className={imgClassName} 
               src={src} 
             />
-            <h3>{enable ? name : 'Desactavida'}</h3>
+            <h3>{render}</h3>
           </picture>
           )
       }
 
       ReactDOM.render(
         <div>
-            <Avatar id={1}  size='small'/>
-            <Avatar id={2} name={"Carmen"}/>
-            <Avatar id={3} name={"Paola"} size='large'/>
+           
+          <Avatar id={1}  size='small'/>
+          <Avatar id={2} name={"Carmen"}/>
+          <Avatar id={3} name={"Paola"} size='large'/>
+          <Contador />  
         </div>, $app
       )
           
