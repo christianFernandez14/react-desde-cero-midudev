@@ -21,6 +21,10 @@
         opacity: .3;
       }
     </style>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>     
+    
   </head>
   <body>
     <h1>Woman in Tech</h1>
@@ -28,7 +32,19 @@
 
     <script>
       const $app = document.getElementById("app");
+      const h = React.createElement
 
+      const Avatar = params => {
+        const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`
+
+        return h('img', {src})
+      }
+
+      ReactDOM.render(h(Avatar, {id: 1}), $app)
+
+      
+      
+      /*
       const Avatar = (params) => {
         const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
 
@@ -47,7 +63,8 @@
         img.addEventListener('click', ()=>{
           img.classList.toggle('disable')
         })
-      })
+      })*/
+
     </script>
   </body>
 </html>
