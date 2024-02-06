@@ -17,7 +17,7 @@
         border-radius: 50%;
       }
 
-      img.disable{
+      img.disabled{
         opacity: .3;
       }
     </style>
@@ -33,16 +33,24 @@
 
     <script type="text/babel">
       const $app = document.getElementById("app");
-      const h = React.createElement
+      const useState = React.useState
 
       const Avatar = params => {
+        const [enable, setEnable] = useState(true)
+
         const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`
 
         // return h('img', {src})
 
         return (
           <picture>
-            <img src={src} />
+            <img 
+              onClick = {()=> {
+                setEnable(!enable)
+              }}
+              className={enable ? '' : 'disabled'} 
+              src={src} 
+            />
             <h3>{params.name}</h3>
           </picture>
           )
