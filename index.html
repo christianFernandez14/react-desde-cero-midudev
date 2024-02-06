@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Static Template</title>
     <style>
-      picture{
+      picture {
         width: 100px;
         display: flex;
         flex-direction: column;
@@ -20,13 +20,24 @@
   </head>
   <body>
     <h1>Woman in Tech</h1>
-    <picture>
-      <img src="https://randomuser.me/api/portraits/women/1.jpg" />
-      linda
-    </picture>
-    <picture>
-      <img src="https://randomuser.me/api/portraits/women/2.jpg" />
-      Daniela
-    </picture>
+    <div id="app">   
+
+    <script>
+      const $app = document.getElementById("app");
+
+      const Avatar = (params) => {
+        const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+
+        return `
+        <picture>
+          <img src="${src}" />
+          ${params.name}
+        </picture>
+        `;
+      };
+
+      $app.innerHTML = Avatar({id: 5, name: "Andrea"})
+      $app.innerHTML += Avatar({id: 6, name: "Manuela"})
+    </script>
   </body>
 </html>
